@@ -13,28 +13,24 @@
 	<artifactId>sandbox.model.hibernate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
-	<description>Generic Model</description>
+	<description>Generic Hibernate Model</description>
 	<packaging>jar</packaging>
-	<inceptionYear>2015</inceptionYear>
-	<url>https://github.com/kjwenger/sandbox.model.hibernate</url>
-	<licenses>
-		<license>
-			<name>MIT License</name>
-			<url>http://www.opensource.org/licenses/mit-license.php</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+	<url>https://github.com/kjwenger/${project.artifactId}</url>
+	<scm>
+		<url>${project.url}</url>
+		<connection>scm:git:git://github.com/kjwenger/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:git@github.com:kjwenger/${project.artifactId}.git</developerConnection>
+	</scm>
+	<issueManagement>
+		<url>${project.url}/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
 	<properties>
 		<database.host>localhost</database.host>
 		<!-- database.host>5.78.238.165</database.host -->
 		<database.name>U14n</database.name>
 		<sql.drop.database>drop database U14n</sql.drop.database>
 		<dbunit.filename>users(name,password)</dbunit.filename>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<encoding>UTF-8</encoding>
 		<scala.version>2.12.0-M3</scala.version>
 		<scala.compat.version>2.12.0-M3</scala.compat.version>
 	</properties>
@@ -43,110 +39,69 @@
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>${scala.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.specs2</groupId>
-			<artifactId>specs2-core_${scala.compat.version}</artifactId>
-			<version>2.4.16</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- persistence dependencies -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.2.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.2.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- database dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.190</version>
 		</dependency>
 		<!-- logging dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
 		</dependency>
 		<!-- test dependencies -->
 		<!-- dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-scala</artifactId> 
-			<version>1.2.3</version> <scope>test</scope>
 		</dependency -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.specs2</groupId>
 			<artifactId>specs2-core_${scala.compat.version}</artifactId>
-			<version>3.6.5-20151025224741-adea3e0</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.scalatest</groupId>
 			<artifactId>scalatest_${scala.compat.version}</artifactId>
-			<version>2.2.5-M3</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>net.alchim31.maven</groupId>
-					<artifactId>scala-maven-plugin</artifactId>
-					<version>3.2.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
@@ -182,7 +137,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
 				<executions>
 					<execution>
 						<id>add-source</id>
@@ -214,26 +168,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<inherited>true</inherited>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
 				<configuration>
 					<useFile>false</useFile>
 					<disableXmlReport>true</disableXmlReport>
